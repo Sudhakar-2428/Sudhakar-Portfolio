@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', 'Space Grotesk', sans-serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Light Lavender Core Palette */
+    --bg-page: #f4f0ff;
+    --bg-page-alt: #f7f4ff;
+    --bg-card: rgba(255, 255, 255, 0.90);
+    --bg-card-solid: #ffffff;
+    
+    --text-main: #171329;
+    --text-secondary: #3f3850;
+    --text-muted: #6b6478;
+    
+    --purple-primary: #5b21b6;
+    --purple-secondary: #6d28d9;
+    --purple-accent: #7c3aed;
+    --purple-light: #a78bfa;
+    --purple-bg-badge: #ede5ff;
+    
+    --border-purple: rgba(91, 33, 182, 0.12);
+    --border-purple-hover: rgba(91, 33, 182, 0.35);
+    --shadow-purple: 0 10px 30px -10px rgba(91, 33, 182, 0.08);
+  }
+
+  html.dark {
+    /* Deep Purple Dark Theme Option */
+    --bg-page: #0f091f;
+    --bg-card: rgba(23, 15, 43, 0.92);
+    --bg-card-solid: #1b1230;
+    
+    --text-main: #f8f5ff;
+    --text-secondary: #d4cbe5;
+    --text-muted: #9f94b8;
+    
+    --purple-primary: #a78bfa;
+    --purple-secondary: #c4b5fd;
+    --purple-accent: #ddd6fe;
+    --purple-bg-badge: #2c1a4d;
+    
+    --border-purple: rgba(167, 139, 250, 0.2);
+    --border-purple-hover: rgba(196, 181, 253, 0.45);
+    --shadow-purple: 0 10px 30px -10px rgba(167, 139, 250, 0.15);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f0ff;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f091f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5b21b6;
+  border-radius: 9999px;
+  border: 2px solid #f4f0ff;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border: 2px solid #0f091f;
+}
+
+/* Glassmorphism & Cards */
+.glass-card-light {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-purple);
+  box-shadow: var(--shadow-purple);
+  border-radius: 20px;
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  border-color: var(--border-purple-hover);
+  box-shadow: 0 16px 36px -10px rgba(91, 33, 182, 0.14);
+  transform: translateY(-4px);
+}
+
+/* Gradient Text Utilities */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #5b21b6 0%, #6d28d9 45%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .text-gradient-purple {
+  background: linear-gradient(135deg, #c4b5fd 0%, #ddd6fe 50%, #f5f3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-purple-primary {
+  background-color: #5b21b6;
+}
+
+.bg-purple-gradient {
+  background: linear-gradient(135deg, #5b21b6 0%, #6d28d9 50%, #7c3aed 100%);
+}
+
+.bg-dots-lavender {
+  background-image: radial-gradient(rgba(91, 33, 182, 0.12) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-dots-lavender {
+  background-image: radial-gradient(rgba(167, 139, 250, 0.15) 1.2px, transparent 1.2px);
+}
+
+.bg-grid-lavender {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(91, 33, 182, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 33, 182, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-grid-lavender {
+  background-image: 
+    linear-gradient(to right, rgba(167, 139, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(167, 139, 250, 0.06) 1px, transparent 1px);
+}
+
+/* Keyframes */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes pulseGlowSoft {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow-soft {
+  animation: pulseGlowSoft 4s ease-in-out infinite;
+}
