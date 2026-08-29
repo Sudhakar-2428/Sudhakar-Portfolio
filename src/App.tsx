@@ -1,27 +1,22 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { ThemeProvider } from './context/ThemeContext';
-import { BackgroundCanvas } from './components/layout/BackgroundCanvas';
+import { CustomCursor } from './components/ui/CustomCursor';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { BentoGrid } from './components/sections/BentoGrid';
-import { Experience } from './components/sections/Experience';
+import { Hero } from './components/sections/Hero';
 import { Projects } from './components/sections/Projects';
-import { Education } from './components/sections/Education';
-import { Achievements } from './components/sections/Achievements';
-import { Certifications } from './components/sections/Certifications';
+import { Experience } from './components/sections/Experience';
+import { Skills } from './components/sections/Skills';
 import { Contact } from './components/sections/Contact';
 
 import { ProjectModal } from './components/ui/ProjectModal';
-import { CertificateModal } from './components/ui/CertificateModal';
 import { ResumeModal } from './components/ui/ResumeModal';
 import { CommandPalette } from './components/ui/CommandPalette';
-
-import type { ProjectItem, CertificationItem } from './data/portfolioData';
+import type { ProjectItem } from './data/portfolioData';
 
 export function AppContent() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -46,9 +41,8 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen mesh-gradient-bg text-slate-900 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] antialiased font-sans transition-colors duration-400">
-      {/* Dynamic Ambient Background Canvas */}
-      <BackgroundCanvas />
+    <div className="relative min-h-screen bg-[#F7F7F5] text-[#0A0A0A] antialiased selection:bg-[#0A0A0A] selection:text-[#F7F7F5]">
+      <CustomCursor />
 
       {/* Main Sticky Navbar */}
       <Navbar
@@ -57,13 +51,11 @@ export function AppContent() {
       />
 
       {/* Main Sections */}
-      <main className="relative z-10">
-        <BentoGrid onOpenResume={() => setIsResumeOpen(true)} />
-        <Experience />
+      <main className="relative z-10 overflow-hidden">
+        <Hero />
         <Projects onSelectProject={(project) => setSelectedProject(project)} />
-        <Education />
-        <Achievements />
-        <Certifications onSelectCert={(cert) => setSelectedCert(cert)} />
+        <Experience />
+        <Skills />
         <Contact />
       </main>
 
@@ -74,11 +66,6 @@ export function AppContent() {
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
-      />
-
-      <CertificateModal
-        cert={selectedCert}
-        onClose={() => setSelectedCert(null)}
       />
 
       <ResumeModal
