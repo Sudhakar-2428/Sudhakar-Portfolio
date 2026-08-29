@@ -4,9 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { BackgroundCanvas } from './components/layout/BackgroundCanvas';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { Hero } from './components/sections/Hero';
-import { About } from './components/sections/About';
-import { Skills } from './components/sections/Skills';
+import { BentoGrid } from './components/sections/BentoGrid';
 import { Experience } from './components/sections/Experience';
 import { Projects } from './components/sections/Projects';
 import { Education } from './components/sections/Education';
@@ -48,7 +46,7 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#faf8ff] text-slate-900 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] antialiased font-sans transition-colors duration-400">
+    <div className="relative min-h-screen mesh-gradient-bg text-slate-900 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] antialiased font-sans transition-colors duration-400">
       {/* Dynamic Ambient Background Canvas */}
       <BackgroundCanvas />
 
@@ -60,9 +58,7 @@ export function AppContent() {
 
       {/* Main Sections */}
       <main className="relative z-10">
-        <Hero onOpenResume={() => setIsResumeOpen(true)} />
-        <About />
-        <Skills />
+        <BentoGrid onOpenResume={() => setIsResumeOpen(true)} />
         <Experience />
         <Projects onSelectProject={(project) => setSelectedProject(project)} />
         <Education />
