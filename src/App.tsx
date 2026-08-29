@@ -17,6 +17,7 @@ import { Contact } from './components/sections/Contact';
 import { ProjectModal } from './components/ui/ProjectModal';
 import { CertificateModal } from './components/ui/CertificateModal';
 import { ResumeModal } from './components/ui/ResumeModal';
+import { CommandPalette } from './components/ui/CommandPalette';
 
 import type { ProjectItem, CertificationItem } from './data/portfolioData';
 
@@ -24,6 +25,7 @@ export function AppContent() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   // Initialize Lenis Smooth Scroll
   useEffect(() => {
@@ -46,12 +48,15 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#f5f0ff] dark:bg-[#0c0717] text-slate-900 dark:text-slate-100 selection:bg-purple-500/20 selection:text-purple-900 dark:selection:bg-purple-500/40 dark:selection:text-purple-200 antialiased font-sans transition-colors duration-400">
+    <div className="relative min-h-screen bg-[#faf8ff] dark:bg-[#0f091f] text-slate-900 dark:text-slate-100 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] dark:selection:bg-purple-500/40 dark:selection:text-purple-200 antialiased font-sans transition-colors duration-400">
       {/* Dynamic Ambient Background Canvas */}
       <BackgroundCanvas />
 
       {/* Main Sticky Navbar */}
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+      <Navbar
+        onOpenResume={() => setIsResumeOpen(true)}
+        onOpenSearch={() => setIsSearchOpen(true)}
+      />
 
       {/* Main Sections */}
       <main className="relative z-10">
@@ -83,6 +88,12 @@ export function AppContent() {
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
+      />
+
+      <CommandPalette
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectProject={(project) => setSelectedProject(project)}
       />
     </div>
   );
