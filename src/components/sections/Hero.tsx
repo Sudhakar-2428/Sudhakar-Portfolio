@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen pt-28 pb-20 flex items-center justify-center overflow-hidden z-10 bg-[#faf8ff] dark:bg-[#0f091f]">
+    <section id="home" className="relative min-h-screen pt-28 pb-20 flex items-center justify-center overflow-hidden z-10 bg-[#faf8ff]">
       {/* Dynamic Background Gradients & Mesh */}
       <div className="absolute inset-0 bg-dots-lavender opacity-60 pointer-events-none" />
       <div className="absolute top-1/4 left-8 w-96 h-96 bg-[#e0e7ff]/60 dark:bg-purple-900/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow-soft" />

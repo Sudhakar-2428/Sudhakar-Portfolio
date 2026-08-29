@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-[rgba(91,33,182,0.15)] bg-[#e6deff] dark:bg-[#090412] pt-16 pb-12 overflow-hidden z-10">
+    <footer className="relative border-t border-[rgba(91,33,182,0.15)] bg-[#e6deff] pt-16 pb-12 overflow-hidden z-10">
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-gradient-to-b from-[#5b21b6]/10 to-transparent blur-3xl pointer-events-none" />
 

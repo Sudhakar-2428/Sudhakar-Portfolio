@@ -14,7 +14,7 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="relative py-24 bg-[#f4f0ff] dark:bg-[#0f091f] z-10">
+    <section id="experience" className="relative py-24 bg-[#f4f0ff] z-10">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 bg-dots-lavender opacity-30 pointer-events-none" />
 

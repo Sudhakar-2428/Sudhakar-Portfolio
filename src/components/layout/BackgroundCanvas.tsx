@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { useTheme } from '../../context/ThemeContext';
 
 export const BackgroundCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -23,12 +21,8 @@ export const BackgroundCanvas: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
 
-    const isDark = theme === 'dark';
-    const particleCount = Math.min(Math.floor(width / 28), 50);
-
-    const colors = isDark
-      ? ['#a78bfa', '#c4b5fd', '#8b5cf6', '#818cf8']
-      : ['#6d28d9', '#7c3aed', '#8b5cf6', '#9333ea'];
+    const particleCount = Math.min(Math.floor(width / 32), 45);
+    const colors = ['#4f46e5', '#6366f1', '#7c3aed', '#818cf8'];
 
     const particles: Array<{
       x: number;
@@ -48,7 +42,7 @@ export const BackgroundCanvas: React.FC = () => {
         vy: (Math.random() - 0.5) * 0.35,
         radius: Math.random() * 2 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.35 + 0.15,
+        alpha: Math.random() * 0.25 + 0.1,
       });
     }
 
@@ -65,20 +59,16 @@ export const BackgroundCanvas: React.FC = () => {
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Mouse radial ambient glow
-      const glowColor = isDark
-        ? 'rgba(139, 92, 246, 0.08)'
-        : 'rgba(109, 40, 217, 0.06)';
-
+      // Mouse radial ambient glow for Light Lavender
       const radialGradient = ctx.createRadialGradient(
         mouseX,
         mouseY,
         0,
         mouseX,
         mouseY,
-        420
+        450
       );
-      radialGradient.addColorStop(0, glowColor);
+      radialGradient.addColorStop(0, 'rgba(99, 102, 241, 0.07)');
       radialGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = radialGradient;
       ctx.fillRect(0, 0, width, height);
@@ -108,8 +98,8 @@ export const BackgroundCanvas: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = isDark ? '#a78bfa' : '#6d28d9';
-            ctx.globalAlpha = (1 - dist / 120) * (isDark ? 0.12 : 0.08);
+            ctx.strokeStyle = '#6366f1';
+            ctx.globalAlpha = (1 - dist / 120) * 0.08;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }
@@ -127,12 +117,12 @@ export const BackgroundCanvas: React.FC = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [theme]);
+  }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-70"
+      className="fixed inset-0 pointer-events-none z-0 opacity-80"
     />
   );
 };

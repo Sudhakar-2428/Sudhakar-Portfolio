@@ -10,7 +10,7 @@ interface GlowCardProps {
 export const GlowCard: React.FC<GlowCardProps> = ({
   children,
   className = '',
-  glowColor = 'rgba(109, 40, 217, 0.1)',
+  glowColor = 'rgba(79, 70, 229, 0.1)',
   onClick,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -33,7 +33,7 @@ export const GlowCard: React.FC<GlowCardProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
-      className={`relative rounded-2xl glass-panel-light p-6 transition-all duration-300 overflow-hidden ${
+      className={`relative rounded-3xl bg-white border border-[#6366f1]/20 p-6 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md ${
         onClick ? 'cursor-pointer' : ''
       } ${className}`}
     >
@@ -47,10 +47,10 @@ export const GlowCard: React.FC<GlowCardProps> = ({
         />
       )}
       
-      {/* Subtle hover border highlight */}
+      {/* Hover border highlight */}
       {isHovered && (
         <div
-          className="pointer-events-none absolute inset-0 rounded-2xl border border-purple-500/30 transition-opacity duration-300"
+          className="pointer-events-none absolute inset-0 rounded-3xl border border-[#4f46e5]/30 transition-opacity duration-300"
         />
       )}
 

@@ -12,7 +12,7 @@ interface CertificationsProps {
 
 export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) => {
   return (
-    <section id="certifications" className="relative py-24 bg-[#f8f6ff] dark:bg-[#0c0717] z-10">
+    <section id="certifications" className="relative py-24 bg-[#f8f6ff] z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
           badge="Verified Competencies"

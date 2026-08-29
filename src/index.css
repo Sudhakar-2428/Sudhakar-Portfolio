@@ -6,45 +6,25 @@
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Light Lavender Core Palette */
-    --bg-page: #f4f0ff;
-    --bg-page-alt: #f7f4ff;
-    --bg-card: rgba(255, 255, 255, 0.90);
+    /* Light Lavender Core Palette - Strict Default */
+    --bg-page: #faf8ff;
+    --bg-page-alt: #f4f0ff;
+    --bg-card: rgba(255, 255, 255, 0.92);
     --bg-card-solid: #ffffff;
     
-    --text-main: #171329;
-    --text-secondary: #3f3850;
-    --text-muted: #6b6478;
+    --text-main: #1e1b4b;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
     
-    --purple-primary: #5b21b6;
-    --purple-secondary: #6d28d9;
+    --purple-primary: #4f46e5;
+    --purple-secondary: #6366f1;
     --purple-accent: #7c3aed;
     --purple-light: #a78bfa;
-    --purple-bg-badge: #ede5ff;
+    --purple-bg-badge: #eef2ff;
     
-    --border-purple: rgba(91, 33, 182, 0.12);
-    --border-purple-hover: rgba(91, 33, 182, 0.35);
-    --shadow-purple: 0 10px 30px -10px rgba(91, 33, 182, 0.08);
-  }
-
-  html.dark {
-    /* Deep Purple Dark Theme Option */
-    --bg-page: #0f091f;
-    --bg-card: rgba(23, 15, 43, 0.92);
-    --bg-card-solid: #1b1230;
-    
-    --text-main: #f8f5ff;
-    --text-secondary: #d4cbe5;
-    --text-muted: #9f94b8;
-    
-    --purple-primary: #a78bfa;
-    --purple-secondary: #c4b5fd;
-    --purple-accent: #ddd6fe;
-    --purple-bg-badge: #2c1a4d;
-    
-    --border-purple: rgba(167, 139, 250, 0.2);
-    --border-purple-hover: rgba(196, 181, 253, 0.45);
-    --shadow-purple: 0 10px 30px -10px rgba(167, 139, 250, 0.15);
+    --border-purple: rgba(99, 102, 241, 0.16);
+    --border-purple-hover: rgba(99, 102, 241, 0.40);
+    --shadow-purple: 0 10px 30px -10px rgba(79, 70, 229, 0.10);
   }
 
   html {
@@ -74,22 +54,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4f0ff;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0f091f;
+  background: #faf8ff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5b21b6;
+  background: #4f46e5;
   border-radius: 9999px;
-  border: 2px solid #f4f0ff;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #8b5cf6;
-  border: 2px solid #0f091f;
+  border: 2px solid #faf8ff;
 }
 
 /* Glassmorphism & Cards */
@@ -99,7 +70,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-purple);
   box-shadow: var(--shadow-purple);
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
 .glass-card-hover {
@@ -108,51 +79,35 @@
 
 .glass-card-hover:hover {
   border-color: var(--border-purple-hover);
-  box-shadow: 0 16px 36px -10px rgba(91, 33, 182, 0.14);
+  box-shadow: 0 16px 36px -10px rgba(79, 70, 229, 0.16);
   transform: translateY(-4px);
 }
 
 /* Gradient Text Utilities */
 .text-gradient-purple {
-  background: linear-gradient(135deg, #5b21b6 0%, #6d28d9 45%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .text-gradient-purple {
-  background: linear-gradient(135deg, #c4b5fd 0%, #ddd6fe 50%, #f5f3ff 100%);
+  background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 50%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .bg-purple-primary {
-  background-color: #5b21b6;
+  background-color: #4f46e5;
 }
 
 .bg-purple-gradient {
-  background: linear-gradient(135deg, #5b21b6 0%, #6d28d9 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
 }
 
 .bg-dots-lavender {
-  background-image: radial-gradient(rgba(91, 33, 182, 0.12) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(79, 70, 229, 0.14) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
-}
-
-.dark .bg-dots-lavender {
-  background-image: radial-gradient(rgba(167, 139, 250, 0.15) 1.2px, transparent 1.2px);
 }
 
 .bg-grid-lavender {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(91, 33, 182, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(91, 33, 182, 0.05) 1px, transparent 1px);
-}
-
-.dark .bg-grid-lavender {
-  background-image: 
-    linear-gradient(to right, rgba(167, 139, 250, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(167, 139, 250, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(79, 70, 229, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 70, 229, 0.06) 1px, transparent 1px);
 }
 
 /* Keyframes */
@@ -162,8 +117,8 @@
 }
 
 @keyframes pulseGlowSoft {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .animate-float-slow {

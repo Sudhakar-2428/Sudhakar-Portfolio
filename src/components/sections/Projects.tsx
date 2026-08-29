@@ -14,7 +14,7 @@ interface ProjectsProps {
 
 export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   return (
-    <section id="projects" className="relative py-24 bg-[#faf8ff] dark:bg-[#0f091f] z-10">
+    <section id="projects" className="relative py-24 bg-[#faf8ff] z-10">
       {/* Background Visual Atmosphere */}
       <div className="absolute inset-0 bg-dots-lavender opacity-50 pointer-events-none" />
 

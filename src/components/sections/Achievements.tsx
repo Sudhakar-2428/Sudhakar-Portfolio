@@ -17,7 +17,7 @@ export const Achievements: React.FC = () => {
   };
 
   return (
-    <section id="achievements" className="relative py-24 bg-[#f4f0ff] dark:bg-[#0f091f] z-10">
+    <section id="achievements" className="relative py-24 bg-[#faf8ff] z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
           badge="Honors & Recognition"

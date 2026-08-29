@@ -27,7 +27,7 @@ export const Skills: React.FC = () => {
       : SKILLS_DATA.filter((cat) => cat.category === selectedCategory);
 
   return (
-    <section id="skills" className="relative py-24 bg-[#faf8ff] dark:bg-[#0f091f] z-10">
+    <section id="skills" className="relative py-24 bg-[#faf8ff] z-10">
       {/* Technical Grid Pattern */}
       <div className="absolute inset-0 bg-grid-lavender opacity-50 pointer-events-none" />
 

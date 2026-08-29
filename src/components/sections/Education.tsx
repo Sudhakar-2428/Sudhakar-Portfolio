@@ -7,7 +7,7 @@ import { GraduationCap, School } from 'lucide-react';
 
 export const Education: React.FC = () => {
   return (
-    <section id="education" className="relative py-24 bg-[#f8f6ff] dark:bg-[#0c0717] z-10">
+    <section id="education" className="relative py-24 bg-[#f8f6ff] z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
           badge="Academic Foundations"

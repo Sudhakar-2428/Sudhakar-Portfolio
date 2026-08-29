@@ -30,7 +30,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-gradient-to-b from-[#eee8ff] via-[#f4f0ff] to-[#e6deff] dark:from-[#0c0717] dark:via-[#120b22] dark:to-[#0c0717] z-10">
+    <section id="contact" className="relative py-24 bg-gradient-to-b from-[#eee8ff] via-[#f4f0ff] to-[#e6deff] z-10">
       {/* Visual Atmosphere */}
       <div className="absolute inset-0 bg-dots-lavender opacity-50 pointer-events-none" />
 

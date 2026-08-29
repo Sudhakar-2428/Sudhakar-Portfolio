@@ -10,26 +10,19 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('sudhakar_portfolio_theme');
-    if (saved === 'dark' || saved === 'light') return saved;
-    return 'light'; // Default to Light Lavender theme as required!
-  });
+  // Always default to 'light' Light Lavender theme as explicitly requested!
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
-    localStorage.setItem('sudhakar_portfolio_theme', theme);
+    // Always enforce light mode on document root so site is never dark purple
+    root.classList.remove('dark');
+    root.classList.add('light');
+    localStorage.setItem('sudhakar_portfolio_theme', 'light');
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme('light');
   };
 
   return (

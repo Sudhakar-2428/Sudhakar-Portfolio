@@ -16,7 +16,7 @@ const INTEREST_ICONS = [
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="relative py-24 bg-[#faf8ff] dark:bg-[#0f091f] z-10">
+    <section id="about" className="relative py-24 bg-[#faf8ff] z-10">
       {/* Visual Atmosphere */}
       <div className="absolute inset-0 bg-dots-lavender opacity-40 pointer-events-none" />
       <div className="absolute top-1/3 right-10 w-80 h-80 bg-[#e0e7ff]/60 dark:bg-purple-900/20 rounded-full blur-3xl pointer-events-none" />

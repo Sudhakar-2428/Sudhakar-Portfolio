@@ -48,7 +48,7 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#faf8ff] dark:bg-[#0f091f] text-slate-900 dark:text-slate-100 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] dark:selection:bg-purple-500/40 dark:selection:text-purple-200 antialiased font-sans transition-colors duration-400">
+    <div className="relative min-h-screen bg-[#faf8ff] text-slate-900 selection:bg-[#4f46e5]/20 selection:text-[#4f46e5] antialiased font-sans transition-colors duration-400">
       {/* Dynamic Ambient Background Canvas */}
       <BackgroundCanvas />
 
