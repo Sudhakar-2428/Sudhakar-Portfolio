@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
           
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-8">
-            <h2 className="text-6xl md:text-8xl font-medium tracking-tight hover-target leading-none">
+            <h2 className="text-6xl md:text-8xl font-medium tracking-tight  leading-none">
               {PERSONAL_INFO.brand}
             </h2>
             <p className="text-xl text-[#F7F7F5]/70 max-w-sm">
@@ -23,10 +23,10 @@ export const Footer: React.FC = () => {
               Navigation
             </h4>
             <ul className="flex flex-col gap-4 text-lg">
-              <li><a href="#projects" className="hover-target hover:text-[#E53E3E] transition-colors">Selected Works</a></li>
-              <li><a href="#experience" className="hover-target hover:text-[#E53E3E] transition-colors">Experience</a></li>
-              <li><a href="#skills" className="hover-target hover:text-[#E53E3E] transition-colors">Arsenal</a></li>
-              <li><a href="#contact" className="hover-target hover:text-[#E53E3E] transition-colors">Contact</a></li>
+              <li><a href="#projects" className=" hover:text-[#E53E3E] transition-colors">Selected Works</a></li>
+              <li><a href="#experience" className=" hover:text-[#E53E3E] transition-colors">Experience</a></li>
+              <li><a href="#skills" className=" hover:text-[#E53E3E] transition-colors">Arsenal</a></li>
+              <li><a href="#contact" className=" hover:text-[#E53E3E] transition-colors">Contact</a></li>
             </ul>
           </div>
 
@@ -36,9 +36,9 @@ export const Footer: React.FC = () => {
               Socials
             </h4>
             <ul className="flex flex-col gap-4 text-lg">
-              <li><a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="hover-target hover:text-[#E53E3E] transition-colors">GitHub</a></li>
-              <li><a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="hover-target hover:text-[#E53E3E] transition-colors">LinkedIn</a></li>
-              <li><a href={PERSONAL_INFO.leetcode} target="_blank" rel="noopener noreferrer" className="hover-target hover:text-[#E53E3E] transition-colors">LeetCode</a></li>
+              <li><a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className=" hover:text-[#E53E3E] transition-colors">GitHub</a></li>
+              <li><a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className=" hover:text-[#E53E3E] transition-colors">LinkedIn</a></li>
+              <li><a href={PERSONAL_INFO.leetcode} target="_blank" rel="noopener noreferrer" className=" hover:text-[#E53E3E] transition-colors">LeetCode</a></li>
             </ul>
           </div>
         </div>

@@ -1,101 +1,106 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { EXPERIENCE_DATA, EDUCATION_DATA } from '../../data/portfolioData';
+import { Briefcase, Calendar, Building2 } from 'lucide-react';
+import { EXPERIENCE_DATA } from '../../data/portfolioData';
 
 export const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-32 bg-[#0A0A0A] text-[#F7F7F5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="relative py-24 z-10 overflow-hidden">
+      {/* Background Atmosphere - Soft Violet */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#E4DEF6]/50 to-[var(--bg-page)] opacity-70" />
+      <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-[var(--purple-soft)]/15 blur-[100px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-[90vw] mx-auto relative z-10">
         
-        {/* Experience Section */}
-        <div className="mb-32">
-          <h2 className="text-sm font-mono uppercase tracking-widest text-[#F7F7F5]/50 mb-12 border-b border-[#F7F7F5]/10 pb-4">
-            Professional Experience
-          </h2>
-          
-          <div className="flex flex-col">
-            {EXPERIENCE_DATA.map((exp) => (
-              <motion.div 
-                key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="group border-b border-[#F7F7F5]/10 py-10 hover:border-[#F7F7F5]/30 transition-colors hover-target"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                  <div className="md:col-span-3">
-                    <span className="text-sm font-mono text-[#F7F7F5]/50">{exp.duration}</span>
-                  </div>
-                  
-                  <div className="md:col-span-9">
-                    <h3 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 group-hover:text-[#E53E3E] transition-colors">
-                      {exp.role}
-                    </h3>
-                    
-                    <div className="flex items-center gap-4 mb-6 text-[#F7F7F5]/70">
-                      <span className="text-lg">{exp.company}</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E53E3E]"></span>
-                      <span className="font-mono text-sm uppercase">{exp.project}</span>
-                    </div>
-
-                    <p className="text-[#F7F7F5]/60 text-lg leading-relaxed max-w-3xl mb-8">
-                      {exp.contribution}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map(tech => (
-                        <span key={tech} className="px-3 py-1 border border-[#F7F7F5]/20 rounded-full text-xs font-mono text-[#F7F7F5]/70">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-[#E9D5FF] mb-4 shadow-sm"
+          >
+            <span className="text-[#5B21B6] font-mono text-xs uppercase tracking-widest font-bold">
+              Career Journey
+            </span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold font-heading text-[var(--text-deep)] mb-6"
+          >
+            Work Experience.
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-[var(--text-secondary)] font-medium max-w-2xl mx-auto"
+          >
+            A timeline of my professional growth and technical contributions.
+          </motion.p>
         </div>
 
-        {/* Education Section embedded */}
-        <div>
-          <h2 className="text-sm font-mono uppercase tracking-widest text-[#F7F7F5]/50 mb-12 border-b border-[#F7F7F5]/10 pb-4">
-            Academic Background
-          </h2>
-          
-          <div className="flex flex-col">
-            {EDUCATION_DATA.map((edu, idx) => (
+        <div className="relative max-w-4xl mx-auto">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#7C3AED] via-[#A78BFA] to-transparent md:-translate-x-1/2" />
+
+          {EXPERIENCE_DATA.map((exp) => (
+            <div key={exp.id} className="relative flex flex-col md:flex-row items-start md:justify-between mb-24 last:mb-0">
+              
+              {/* Timeline Dot */}
+              <div className="absolute left-[16px] md:left-1/2 w-6 h-6 rounded-full border-4 border-white bg-[#7C3AED] shadow-[0_0_0_4px_rgba(233,213,255,1)] z-10 md:-translate-x-1/2 mt-1.5" />
+
+              {/* Content */}
               <motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="group border-b border-[#F7F7F5]/10 py-10 hover:border-[#F7F7F5]/30 transition-colors hover-target"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="w-full pl-16 md:pl-0"
               >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                  <div className="md:col-span-3">
-                    <span className="text-sm font-mono text-[#F7F7F5]/50">{edu.period}</span>
+                <div className="md:w-1/4 mb-4 md:mb-0 flex-shrink-0 pt-1">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--purple-soft)]/20 text-[var(--purple-primary)] text-sm font-bold font-mono">
+                    <Calendar className="w-4 h-4" />
+                    {exp.duration}
                   </div>
-                  
-                  <div className="md:col-span-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-2 group-hover:text-[#E53E3E] transition-colors">
-                        {edu.degree}
-                      </h3>
-                      <div className="text-lg text-[#F7F7F5]/70">
-                        {edu.institution}
-                      </div>
+                </div>
+                
+                <div className="md:w-3/4">
+                  <h3 className="text-2xl font-bold font-heading text-[var(--text-deep)] mb-2">
+                    {exp.role}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-2 text-[var(--text-secondary)] font-bold mb-4 text-sm">
+                    <div className="flex items-center gap-1.5">
+                      <Building2 className="w-4 h-4 text-[var(--purple-primary)]" />
+                      {exp.company}
                     </div>
-                    
-                    <div className="text-right">
-                      <span className="inline-block px-4 py-2 border border-[#E53E3E]/30 text-[#E53E3E] rounded-full font-mono text-sm">
-                        {edu.score}
+                  </div>
+
+                  <div className="bg-white/50 backdrop-blur rounded-2xl p-5 border border-white/60 mb-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Briefcase className="w-4 h-4 text-[var(--purple-bright)]" />
+                      <span className="font-bold text-[var(--text-deep)]">Key Project: {exp.project}</span>
+                    </div>
+                    <p className="text-[var(--text-secondary)] font-medium leading-relaxed text-sm">
+                      {exp.contribution}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies?.map((tech: string) => (
+                      <span 
+                        key={tech} 
+                        className="px-3 py-1.5 bg-white border border-[var(--glass-border)] rounded-lg text-sm font-bold text-[var(--text-secondary)] shadow-sm hover:border-[var(--purple-soft)] transition-colors"
+                      >
+                        {tech}
                       </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
       </div>

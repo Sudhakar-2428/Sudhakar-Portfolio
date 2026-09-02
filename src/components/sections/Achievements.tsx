@@ -1,10 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../ui/SectionHeader';
-import { GlowCard } from '../ui/GlowCard';
-import { ACHIEVEMENTS_DATA } from '../../data/portfolioData';
 import { Trophy, FileText, Calendar, Building, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { ACHIEVEMENTS_DATA } from '../../data/portfolioData';
 
 export const Achievements: React.FC = () => {
   const triggerConfetti = () => {
@@ -12,18 +10,47 @@ export const Achievements: React.FC = () => {
       particleCount: 60,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#5b21b6', '#6d28d9', '#f59e0b']
+      colors: ['#7C3AED', '#5B21B6', '#A78BFA']
     });
   };
 
   return (
-    <section id="achievements" className="relative py-24 bg-[#faf8ff] z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeader
-          badge="Honors & Recognition"
-          title="Achievements & Research"
-          subtitle="Competitive coding global ranks and IEEE international conference research presentations."
-        />
+    <section id="achievements" className="relative py-24 z-10 overflow-hidden">
+      {/* Background Atmosphere - Soft Blue/Violet */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#D4CDEC]/50 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute top-[20%] right-[10%] w-[450px] h-[450px] bg-[#93C5FD]/10 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-[90vw] mx-auto relative z-10">
+        
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-[#E9D5FF] mb-4 shadow-sm"
+          >
+            <span className="text-[#5B21B6] font-mono text-xs uppercase tracking-widest font-bold">
+              Honors & Recognition
+            </span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold font-heading text-[var(--text-deep)] mb-6"
+          >
+            Key Achievements.
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-[var(--text-secondary)] font-medium max-w-2xl mx-auto"
+          >
+            Achievements & Research
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {ACHIEVEMENTS_DATA.map((ach, idx) => {
@@ -32,43 +59,52 @@ export const Achievements: React.FC = () => {
             return (
               <motion.div
                 key={ach.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: idx * 0.15 }}
                 onClick={triggerConfetti}
-                className="cursor-pointer"
+                className="cursor-pointer group"
               >
-                <GlowCard className="h-full p-8 flex flex-col justify-between border border-[rgba(91,33,182,0.15)] bg-white dark:bg-[#1b1230] shadow-md">
-                  <div className="space-y-4">
+                <div className="glass-card p-6 md:p-8 rounded-3xl h-full flex flex-col border border-[var(--glass-border)] hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden">
+                  
+                  {/* Hover Background Shift */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  <div className="relative z-10 space-y-6">
                     {/* Header Badge */}
                     <div className="flex items-center justify-between">
                       <span
-                        className={`px-3.5 py-1 rounded-full text-xs font-mono font-bold ${
+                        className={`px-4 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase shadow-sm ${
                           isRank
-                            ? 'bg-amber-100 text-amber-900 border border-amber-300 dark:bg-amber-950 dark:text-amber-300'
-                            : 'bg-[#ede5ff] text-[#5b21b6] border border-[rgba(91,33,182,0.25)] dark:bg-[#2c1a4d] dark:text-[#c4b5fd]'
+                            ? 'bg-amber-50 text-amber-600 border border-amber-200'
+                            : 'bg-[#EEE8FF] text-[#5B21B6] border border-[#E9D5FF]'
                         }`}
                       >
                         {ach.badge}
                       </span>
-                      <div className="p-2.5 rounded-xl bg-[#f4f0ff] dark:bg-[#24163d] border border-[rgba(91,33,182,0.15)] shadow-sm">
+                      <div className={`p-3 rounded-2xl shadow-sm border ${
+                          isRank 
+                            ? 'bg-amber-50 border-amber-200 text-amber-600 group-hover:bg-amber-100' 
+                            : 'bg-white border-[#E9D5FF] text-[#7C3AED] group-hover:bg-[#EEE8FF]'
+                        } transition-colors`}
+                      >
                         {isRank ? (
-                          <Trophy className="w-5 h-5 text-amber-600" />
+                          <Trophy className="w-6 h-6" />
                         ) : (
-                          <FileText className="w-5 h-5 text-[#5b21b6]" />
+                          <FileText className="w-6 h-6" />
                         )}
                       </div>
                     </div>
 
                     {/* Title */}
                     <div>
-                      <h3 className="text-2xl font-black text-[#171329] dark:text-white font-heading">
+                      <h3 className="text-2xl md:text-3xl font-black text-[#181522] font-heading mb-2">
                         {ach.title}
                       </h3>
                       <p
-                        className={`text-lg font-extrabold font-mono mt-1 ${
-                          isRank ? 'text-amber-700 dark:text-amber-400' : 'text-[#5b21b6] dark:text-[#c4b5fd]'
+                        className={`text-lg font-bold font-mono tracking-wide ${
+                          isRank ? 'text-amber-600' : 'text-[#7C3AED]'
                         }`}
                       >
                         {ach.subtitle}
@@ -76,33 +112,33 @@ export const Achievements: React.FC = () => {
                     </div>
 
                     {/* Details */}
-                    <p className="text-[#3f3850] dark:text-slate-200 text-sm leading-relaxed font-medium">
+                    <p className="text-[#464052] leading-relaxed text-base">
                       {ach.detail}
                     </p>
                   </div>
 
                   {/* Footer */}
-                  <div className="pt-6 mt-6 border-t border-[rgba(91,33,182,0.12)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-[#3f3850] dark:text-slate-300 font-bold">
+                  <div className="relative z-10 pt-6 mt-8 border-t border-[#E9D5FF] flex flex-wrap items-center justify-between gap-4 text-sm font-mono text-[#6F687A] font-semibold">
                     {ach.institution && (
-                      <span className="flex items-center gap-1.5 text-[#171329] dark:text-white">
-                        <Building className="w-3.5 h-3.5 text-[#5b21b6]" />
+                      <span className="flex items-center gap-2 text-[#181522]">
+                        <Building className="w-4 h-4 text-[#7C3AED]" />
                         {ach.institution}
                       </span>
                     )}
                     {ach.date && (
-                      <span className="flex items-center gap-1.5 text-[#3f3850]">
-                        <Calendar className="w-3.5 h-3.5 text-[#5b21b6]" />
+                      <span className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-[#7C3AED]" />
                         {ach.date}
                       </span>
                     )}
                     {!ach.institution && (
-                      <span className="flex items-center gap-1 text-amber-700 dark:text-amber-400 font-bold">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        Global Competitive Programming Contest
+                      <span className="flex items-center gap-1 text-amber-600">
+                        <Sparkles className="w-4 h-4" />
+                        Global Programming Contest
                       </span>
                     )}
                   </div>
-                </GlowCard>
+                </div>
               </motion.div>
             );
           })}

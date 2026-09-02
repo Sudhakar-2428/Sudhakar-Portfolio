@@ -1,92 +1,203 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '../ui/SectionHeader';
-import { GlowCard } from '../ui/GlowCard';
+import { Award, Calendar, ShieldCheck, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { CERTIFICATIONS_DATA } from '../../data/portfolioData';
 import type { CertificationItem } from '../../data/portfolioData';
-import { Award, Calendar, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface CertificationsProps {
   onSelectCert: (cert: CertificationItem) => void;
 }
 
 export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) => {
-  return (
-    <section id="certifications" className="relative py-24 bg-[#f8f6ff] z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeader
-          badge="Verified Competencies"
-          title="Certifications & Credentials"
-          subtitle="Official technical certifications from Infosys Springboard and Nasscom FutureSkills Prime."
-        />
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsVisible, setCardsVisible] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CERTIFICATIONS_DATA.map((cert, idx) => (
+  useEffect(() => {
+    const updateVisible = () => {
+      if (window.innerWidth >= 1024) setCardsVisible(3);
+      else if (window.innerWidth >= 768) setCardsVisible(2);
+      else setCardsVisible(1);
+    };
+    updateVisible();
+    window.addEventListener('resize', updateVisible);
+    return () => window.removeEventListener('resize', updateVisible);
+  }, []);
+
+  const maxIndex = Math.max(0, CERTIFICATIONS_DATA.length - cardsVisible);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') handlePrev();
+      else if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [maxIndex]);
+
+  const handleDragEnd = (_e: any, { offset }: any) => {
+    const swipeThreshold = 50;
+    if (offset.x < -swipeThreshold) {
+      handleNext();
+    } else if (offset.x > swipeThreshold) {
+      handlePrev();
+    }
+  };
+
+  return (
+    <section id="certifications" className="relative py-24 z-10 overflow-hidden">
+      {/* Background Atmosphere - Light Lavender */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--bg-page)] via-[#D6D2F0]/40 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute bottom-0 left-[20%] w-[500px] h-[500px] bg-[var(--purple-soft)]/10 blur-[100px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-[90vw] mx-auto relative z-20 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
             <motion.div
-              key={cert.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-[var(--glass-border)] mb-4 shadow-sm"
             >
-              <GlowCard className="h-full p-6 flex flex-col justify-between group border border-[rgba(91,33,182,0.15)] bg-white dark:bg-[#1b1230] shadow-sm">
-                <div className="space-y-4">
-                  {/* Provider Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-[#ede5ff] dark:bg-[#2c1a4d] border border-[rgba(91,33,182,0.2)] text-[#5b21b6]">
-                      <Award className="w-5 h-5" />
-                    </div>
-                    <span className="px-3 py-1 rounded-full bg-[#ede5ff] dark:bg-[#2c1a4d] border border-[rgba(91,33,182,0.2)] text-[11px] font-mono text-[#5b21b6] dark:text-[#c4b5fd] font-extrabold shadow-sm">
-                      {cert.provider}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <div>
-                    <h3 className="text-lg font-bold text-[#171329] dark:text-white font-heading group-hover:text-[#5b21b6] transition-colors">
-                      {cert.title}
-                    </h3>
-                    <div className="flex items-center gap-2 mt-2 text-xs font-mono text-[#3f3850] dark:text-slate-300 font-bold">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-[#5b21b6]" />
-                        {cert.date}
-                      </span>
-                      {cert.certId && (
-                        <span className="flex items-center gap-1 text-[#065f46] dark:text-emerald-300 font-extrabold">
-                          <ShieldCheck className="w-3.5 h-3.5" />
-                          ID: {cert.certId}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Skills badges */}
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {cert.skillsLearned.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-2.5 py-0.5 rounded-md bg-[#f4f0ff] dark:bg-[#24163d] text-[#171329] dark:text-slate-100 text-[11px] font-mono border border-[rgba(91,33,182,0.12)] font-semibold shadow-sm"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* View Details Button */}
-                <div className="pt-6 mt-6 border-t border-[rgba(91,33,182,0.12)]">
-                  <button
-                    onClick={() => onSelectCert(cert)}
-                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#ede5ff] dark:bg-[#2c1a4d] hover:bg-[#e2d5ff] border border-[rgba(91,33,182,0.2)] text-xs font-mono font-extrabold text-[#5b21b6] dark:text-[#c4b5fd] transition-all shadow-sm"
-                  >
-                    <span>View Verification Dossier</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </GlowCard>
+              <span className="text-[var(--purple-primary)] font-mono text-xs uppercase tracking-widest font-bold">
+                Verified Competencies
+              </span>
             </motion.div>
-          ))}
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-bold font-heading text-[var(--text-deep)]"
+            >
+              Certifications
+            </motion.h2>
+          </div>
+
+          {/* Navigation Controls */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3"
+          >
+            <button
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+              aria-label="Previous certificate"
+              className="p-3 rounded-xl bg-white border border-[var(--glass-border)] text-[var(--purple-primary)] hover:bg-[var(--purple-soft)]/20 hover:border-[var(--purple-primary)]/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-[var(--glass-border)] transition-all shadow-sm"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={currentIndex >= maxIndex}
+              aria-label="Next certificate"
+              className="p-3 rounded-xl bg-white border border-[var(--glass-border)] text-[var(--purple-primary)] hover:bg-[var(--purple-soft)]/20 hover:border-[var(--purple-primary)]/30 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-[var(--glass-border)] transition-all shadow-sm"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </motion.div>
         </div>
+      </div>
+
+      <div className="relative w-full max-w-[90vw] mx-auto overflow-hidden">
+        
+        {/* Left & Right Gradients for smooth fade - positioned inside the container so cards fade at edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
+
+        <motion.div 
+          ref={containerRef}
+          className="flex cursor-grab active:cursor-grabbing py-4"
+          drag="x"
+          dragDirectionLock
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.1}
+          onDragEnd={handleDragEnd}
+          animate={{ x: `calc(-${currentIndex * (100 / cardsVisible)}%)` }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        >
+          {CERTIFICATIONS_DATA.map((cert, idx) => {
+            const isVisible = idx >= currentIndex && idx < currentIndex + cardsVisible;
+            return (
+              <div
+                key={cert.id}
+                style={{ minWidth: `${100 / cardsVisible}%` }}
+                className="px-3 md:px-4 flex-shrink-0"
+              >
+                <div 
+                  className={`glass-card h-full p-6 md:p-8 flex flex-col justify-between rounded-[2rem] border border-[var(--glass-border)] transition-all duration-500 bg-white/70 ${
+                    isVisible ? 'opacity-100 scale-100 shadow-sm hover:shadow-xl hover:border-[var(--purple-primary)]' : 'opacity-40 scale-95 pointer-events-none'
+                  }`}
+                >
+                  
+                  <div className="space-y-6">
+                    {/* Provider Header */}
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 rounded-2xl bg-[var(--purple-soft)] text-[var(--purple-primary)] border border-[var(--glass-border)] group-hover:scale-110 transition-all duration-300">
+                        <Award className="w-6 h-6" />
+                      </div>
+                      <span className="px-3 py-1 rounded-full bg-white border border-[var(--glass-border)] text-[10px] md:text-xs font-mono font-bold text-[var(--purple-primary)] shadow-sm uppercase tracking-wider">
+                        {cert.provider}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <div>
+                      <h3 className="text-lg md:text-xl font-black text-[var(--text-deep)] font-heading transition-colors leading-tight mb-3">
+                        {cert.title}
+                      </h3>
+                      <div className="flex flex-col gap-2 text-xs md:text-sm font-mono text-[var(--text-secondary)] font-semibold">
+                        <span className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-[var(--purple-primary)]" />
+                          {cert.date}
+                        </span>
+                        {cert.certId && (
+                          <span className="flex items-center gap-2 text-emerald-600">
+                            <ShieldCheck className="w-4 h-4" />
+                            ID: {cert.certId}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {cert.skillsLearned.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-2 md:px-3 py-1 rounded-lg bg-[#F8F5FF] text-[#464052] text-[10px] md:text-xs font-mono border border-[#E9D5FF] font-semibold shadow-sm"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* View Button */}
+                  <div className="pt-6 mt-8 border-t border-[#E9D5FF]">
+                    <button
+                      onClick={() => onSelectCert(cert)}
+                      className="w-full flex items-center justify-between px-5 py-3 rounded-xl bg-white hover:bg-[#EEE8FF] border border-[#E9D5FF] text-sm font-bold text-[#5B21B6] transition-all shadow-sm group/btn"
+                    >
+                      <span>View Certificate</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

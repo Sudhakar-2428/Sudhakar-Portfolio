@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { ThemeProvider } from './context/ThemeContext';
-import { CustomCursor } from './components/ui/CustomCursor';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Hero } from './components/sections/Hero';
-import { Projects } from './components/sections/Projects';
-import { Experience } from './components/sections/Experience';
+import { About } from './components/sections/About';
 import { Skills } from './components/sections/Skills';
+import { Experience } from './components/sections/Experience';
+import { Projects } from './components/sections/Projects';
+import { Education } from './components/sections/Education';
+import { Achievements } from './components/sections/Achievements';
+import { Certifications } from './components/sections/Certifications';
 import { Contact } from './components/sections/Contact';
 
 import { ProjectModal } from './components/ui/ProjectModal';
@@ -41,9 +44,8 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#F7F7F5] text-[#0A0A0A] antialiased selection:bg-[#0A0A0A] selection:text-[#F7F7F5]">
-      <CustomCursor />
-
+    <div className="relative min-h-screen antialiased selection:bg-[#5B21B6] selection:text-white bg-[var(--bg-page)]">
+      
       {/* Main Sticky Navbar */}
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
@@ -51,11 +53,15 @@ export function AppContent() {
       />
 
       {/* Main Sections */}
-      <main className="relative z-10 overflow-hidden">
+      <main className="relative z-10 flex flex-col gap-12 md:gap-24 pb-20">
         <Hero />
-        <Projects onSelectProject={(project) => setSelectedProject(project)} />
-        <Experience />
+        <About />
         <Skills />
+        <Experience />
+        <Projects onSelectProject={(project) => setSelectedProject(project)} />
+        <Education />
+        <Achievements />
+        <Certifications onSelectCert={() => {}} />
         <Contact />
       </main>
 

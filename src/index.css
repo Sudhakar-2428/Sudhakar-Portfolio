@@ -6,13 +6,25 @@
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    /* Architectural Off-White Core Palette */
-    --bg-page: #F7F7F5;
-    --text-main: #0A0A0A;
-    --text-secondary: #4A4A4A;
-    --text-muted: #8F8F8F;
+    /* Premium Light Lavender Developer Palette */
+    --bg-page: #DDD8F0;
+    --bg-secondary: #D4CDEC;
+    --bg-card: #F4F1FA;
     
-    --accent: #E53E3E; /* Subtle striking red/orange accent */
+    --color-white: #FFFFFF;
+    
+    --purple-primary: #6D35D9;
+    --purple-bright: #7C3AED;
+    --purple-soft: #A78BFA;
+    --purple-deep: #4C249C;
+    
+    --text-deep: #211A32;
+    --text-secondary: #625A72;
+    --text-muted: #6F687A;
+    
+    --accent-glow: rgba(109, 53, 217, 0.25);
+    --glass-bg: rgba(244, 241, 250, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.5);
   }
 
   html {
@@ -21,15 +33,14 @@
 
   body {
     background-color: var(--bg-page);
-    color: var(--text-main);
+    color: var(--text-deep);
     font-family: var(--font-sans);
     overflow-x: hidden;
-    cursor: none; /* Hide default cursor for custom cursor */
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: var(--text-main);
+    color: var(--text-deep);
   }
 
   code, pre {
@@ -39,21 +50,17 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 0px; /* Hide scrollbar for immersive feel */
+  width: 6px;
 }
-
-/* Typography Utilities */
-.text-massive {
-  font-size: clamp(4rem, 15vw, 15rem);
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  font-weight: 900;
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
 }
-
-.text-blend {
-  mix-blend-mode: difference;
-  color: #fff;
+::-webkit-scrollbar-thumb {
+  background: var(--purple-soft);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-primary);
 }
 
 /* Reveal Animation Class */
@@ -78,7 +85,35 @@
   display: inline-block;
 }
 
-/* Global Hover overrides for custom cursor */
-a, button, [role="button"] {
-  cursor: none;
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-card {
+  background: rgba(244, 241, 250, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 20px rgba(76, 36, 156, 0.08);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 30px rgba(109, 53, 217, 0.2);
+  border-color: rgba(167, 139, 250, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Gradient Texts */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--purple-bright), var(--purple-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
