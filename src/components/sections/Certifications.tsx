@@ -123,7 +123,11 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={0.1}
           onDragEnd={handleDragEnd}
-          animate={{ x: `calc(-${currentIndex * (100 / cardsVisible)}%)` }}
+          style={{ 
+            width: `${(CERTIFICATIONS_DATA.length / cardsVisible) * 100}%`,
+            touchAction: 'pan-y'
+          }}
+          animate={{ x: `-${(currentIndex * 100) / CERTIFICATIONS_DATA.length}%` }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {CERTIFICATIONS_DATA.map((cert, idx) => {
@@ -131,7 +135,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
             return (
               <div
                 key={cert.id}
-                style={{ minWidth: `${100 / cardsVisible}%` }}
+                style={{ width: `${100 / CERTIFICATIONS_DATA.length}%` }}
                 className="px-3 md:px-4 flex-shrink-0"
               >
                 <div 

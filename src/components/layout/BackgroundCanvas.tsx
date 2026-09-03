@@ -93,13 +93,13 @@ export const BackgroundCanvas: React.FC = () => {
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 120) {
+          const connectionDistance = width < 768 ? 70 : 120;
+          if (dist < connectionDistance) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.strokeStyle = '#6366f1';
-            ctx.globalAlpha = (1 - dist / 120) * 0.08;
+            ctx.globalAlpha = (1 - dist / connectionDistance) * 0.08;
             ctx.lineWidth = 0.7;
             ctx.stroke();
           }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Award, Calendar, CheckCircle2, ShieldCheck } from 'lucide-react';
 import type { CertificationItem } from '../../data/portfolioData';
@@ -9,6 +9,20 @@ interface CertificateModalProps {
 }
 
 export const CertificateModal: React.FC<CertificateModalProps> = ({ cert, onClose }) => {
+  useEffect(() => {
+    if (cert) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [cert]);
+
   if (!cert) return null;
 
   return (

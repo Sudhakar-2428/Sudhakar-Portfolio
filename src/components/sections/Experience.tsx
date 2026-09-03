@@ -44,20 +44,20 @@ export const Experience: React.FC = () => {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Vertical Timeline Line */}
-          <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#7C3AED] via-[#A78BFA] to-transparent md:-translate-x-1/2" />
+          <div className="absolute left-[27px] top-0 bottom-0 w-px bg-gradient-to-b from-[#7C3AED] via-[#A78BFA] to-transparent" />
 
           {EXPERIENCE_DATA.map((exp) => (
             <div key={exp.id} className="relative flex flex-col md:flex-row items-start md:justify-between mb-24 last:mb-0">
               
               {/* Timeline Dot */}
-              <div className="absolute left-[16px] md:left-1/2 w-6 h-6 rounded-full border-4 border-white bg-[#7C3AED] shadow-[0_0_0_4px_rgba(233,213,255,1)] z-10 md:-translate-x-1/2 mt-1.5" />
+              <div className="absolute left-[16px] w-6 h-6 rounded-full border-4 border-white bg-[#7C3AED] shadow-[0_0_0_4px_rgba(233,213,255,1)] z-10 mt-1.5" />
 
               {/* Content */}
               <motion.div 
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="w-full pl-16 md:pl-0"
+                className="w-full pl-16 md:pl-20 flex flex-col md:flex-row"
               >
                 <div className="md:w-1/4 mb-4 md:mb-0 flex-shrink-0 pt-1">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--purple-soft)]/20 text-[var(--purple-primary)] text-sm font-bold font-mono">

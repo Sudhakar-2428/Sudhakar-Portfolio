@@ -16,10 +16,12 @@ import { Contact } from './components/sections/Contact';
 import { ProjectModal } from './components/ui/ProjectModal';
 import { ResumeModal } from './components/ui/ResumeModal';
 import { CommandPalette } from './components/ui/CommandPalette';
-import type { ProjectItem } from './data/portfolioData';
+import { CertificateModal } from './components/ui/CertificateModal';
+import type { ProjectItem, CertificationItem } from './data/portfolioData';
 
 export function AppContent() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -44,7 +46,7 @@ export function AppContent() {
   }, []);
 
   return (
-    <div className="relative min-h-screen antialiased selection:bg-[#5B21B6] selection:text-white bg-[var(--bg-page)]">
+    <div className="relative min-h-screen antialiased selection:bg-[#5B21B6] selection:text-white bg-[var(--bg-page)] overflow-x-clip">
       
       {/* Main Sticky Navbar */}
       <Navbar
@@ -61,7 +63,7 @@ export function AppContent() {
         <Projects onSelectProject={(project) => setSelectedProject(project)} />
         <Education />
         <Achievements />
-        <Certifications onSelectCert={() => {}} />
+        <Certifications onSelectCert={(cert) => setSelectedCert(cert)} />
         <Contact />
       </main>
 
@@ -72,6 +74,11 @@ export function AppContent() {
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+
+      <CertificateModal
+        cert={selectedCert}
+        onClose={() => setSelectedCert(null)}
       />
 
       <ResumeModal

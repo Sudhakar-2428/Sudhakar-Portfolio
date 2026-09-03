@@ -42,7 +42,7 @@ export const Education: React.FC = () => {
           </motion.p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Vertical Timeline Line */}
           <div className="absolute left-[27px] top-0 bottom-0 w-px bg-gradient-to-b from-[#7C3AED] to-[#E9D5FF]" />
 
@@ -94,11 +94,6 @@ export const Education: React.FC = () => {
                     </span>
                   </div>
                 </div>
-                {edu.details && (
-                  <p className="text-[#6F687A] leading-relaxed mt-4">
-                    {edu.details}
-                  </p>
-                )}
               </div>
             </motion.div>
           ))}

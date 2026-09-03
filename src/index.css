@@ -7,7 +7,7 @@
     --font-mono: 'JetBrains Mono', monospace;
 
     /* Premium Light Lavender Developer Palette */
-    --bg-page: #DDD8F0;
+    --bg-page: #CCC4E6;
     --bg-secondary: #D4CDEC;
     --bg-card: #F4F1FA;
     
@@ -32,10 +32,9 @@
   }
 
   body {
-    background-color: var(--bg-page);
+    background: radial-gradient(circle at top center, var(--bg-secondary) 0%, var(--bg-page) 100%);
     color: var(--text-deep);
     font-family: var(--font-sans);
-    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {

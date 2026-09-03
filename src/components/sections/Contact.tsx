@@ -16,7 +16,7 @@ export const Contact: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
       const response = await fetch(`${apiUrl}/api/contact`, {
         method: 'POST',
         headers: {
@@ -37,7 +37,14 @@ export const Contact: React.FC = () => {
     } catch (error: any) {
       console.error('Email error:', error);
       setFormStatus('error');
-      setErrorMessage('Unable to send the message right now. Please try again or contact me directly by email.');
+      
+      const errMsg = error?.message || '';
+      if (errMsg.includes('Failed to fetch') || errMsg.includes('NetworkError') || errMsg.includes('Unexpected token')) {
+        setErrorMessage('Unable to connect to the email server. Please ensure the backend is running.');
+      } else {
+        setErrorMessage('Unable to send the message right now. Please try again in a moment.');
+      }
+      
       setTimeout(() => setFormStatus('idle'), 6000);
     }
   };
