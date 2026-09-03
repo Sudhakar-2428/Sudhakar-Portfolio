@@ -55,7 +55,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
   return (
     <section id="certifications" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Light Lavender */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--bg-page)] via-[#D6D2F0]/40 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute bottom-0 left-[20%] w-[500px] h-[500px] bg-[var(--purple-soft)]/10 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-[90vw] mx-auto relative z-20 mb-12">
@@ -76,7 +76,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-bold font-heading text-[var(--text-deep)]"
+              className="text-3xl md:text-4xl font-bold font-heading text-[var(--text-deep)]"
             >
               Certifications
             </motion.h2>
@@ -139,18 +139,21 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
                 className="px-3 md:px-4 flex-shrink-0"
               >
                 <div 
-                  className={`glass-card h-full p-6 md:p-8 flex flex-col justify-between rounded-[2rem] border border-[var(--glass-border)] transition-all duration-500 bg-white/70 ${
-                    isVisible ? 'opacity-100 scale-100 shadow-sm hover:shadow-xl hover:border-[var(--purple-primary)]' : 'opacity-40 scale-95 pointer-events-none'
+                  className={`glass-card h-full p-6 md:p-8 flex flex-col justify-between rounded-[2rem] border border-[var(--glass-border)] transition-all duration-500 relative overflow-hidden group ${
+                    isVisible ? 'opacity-100 scale-100 shadow-sm hover:shadow-xl hover:border-[#A78BFA]' : 'opacity-40 scale-95 pointer-events-none'
                   }`}
                 >
                   
-                  <div className="space-y-6">
+                  {/* Hover Background Shift */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  <div className="space-y-6 relative z-10">
                     {/* Provider Header */}
                     <div className="flex items-center justify-between">
-                      <div className="p-3 rounded-2xl bg-[var(--purple-soft)] text-[var(--purple-primary)] border border-[var(--glass-border)] group-hover:scale-110 transition-all duration-300">
+                      <div className="p-3 rounded-2xl bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] border border-[var(--glass-border)] group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-all duration-300">
                         <Award className="w-6 h-6" />
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-white border border-[var(--glass-border)] text-[10px] md:text-xs font-mono font-bold text-[var(--purple-primary)] shadow-sm uppercase tracking-wider">
+                      <span className="px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[10px] md:text-xs font-mono font-bold text-[var(--purple-primary)] shadow-sm uppercase tracking-wider">
                         {cert.provider}
                       </span>
                     </div>
@@ -179,7 +182,7 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
                       {cert.skillsLearned.map((skill) => (
                         <span
                           key={skill}
-                          className="px-2 md:px-3 py-1 rounded-lg bg-[#F8F5FF] text-[#464052] text-[10px] md:text-xs font-mono border border-[#E9D5FF] font-semibold shadow-sm"
+                          className="px-2 md:px-3 py-1 rounded-lg bg-[var(--purple-soft)]/10 text-[var(--text-secondary)] text-[10px] md:text-xs font-mono border border-[var(--glass-border)] font-semibold shadow-sm"
                         >
                           {skill}
                         </span>
@@ -188,10 +191,10 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
                   </div>
 
                   {/* View Button */}
-                  <div className="pt-6 mt-8 border-t border-[#E9D5FF]">
+                  <div className="pt-6 mt-8 border-t border-[var(--glass-border)] relative z-10">
                     <button
                       onClick={() => onSelectCert(cert)}
-                      className="w-full flex items-center justify-between px-5 py-3 rounded-xl bg-white hover:bg-[#EEE8FF] border border-[#E9D5FF] text-sm font-bold text-[#5B21B6] transition-all shadow-sm group/btn"
+                      className="w-full flex items-center justify-between px-5 py-3 rounded-xl bg-[var(--purple-soft)]/10 hover:bg-[var(--purple-primary)] hover:text-white border border-[var(--glass-border)] text-sm font-bold text-[var(--purple-primary)] transition-all shadow-sm group/btn"
                     >
                       <span>View Certificate</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

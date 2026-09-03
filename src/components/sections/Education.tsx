@@ -7,7 +7,7 @@ export const Education: React.FC = () => {
   return (
     <section id="education" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Light Violet */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#DFD8F3]/60 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute top-1/2 left-[5%] w-[400px] h-[400px] bg-[var(--purple-soft)]/10 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-[90vw] mx-auto relative z-10">
@@ -27,7 +27,7 @@ export const Education: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold font-heading text-[var(--text-deep)] mb-6"
+            className="text-3xl md:text-4xl font-bold font-heading text-[var(--text-deep)] mb-6"
           >
             Academic Journey.
           </motion.h2>
@@ -61,19 +61,22 @@ export const Education: React.FC = () => {
               </div>
 
               {/* Card */}
-              <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-8 glass-card rounded-3xl border border-[var(--glass-border)] w-full">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-8 glass-card rounded-3xl border border-[var(--glass-border)] w-full hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden group">
                 
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-2xl bg-[var(--purple-soft)]/10 flex items-center justify-center text-[var(--purple-primary)] mb-4">
+                {/* Hover Background Shift */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                <div className="flex-shrink-0 relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-[var(--purple-soft)]/10 flex items-center justify-center text-[var(--purple-primary)] mb-4 group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-colors duration-300">
                     <GraduationCap className="w-8 h-8" />
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[var(--glass-border)] text-[var(--purple-primary)] text-sm font-bold font-mono shadow-sm">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[var(--purple-primary)] text-sm font-bold font-mono shadow-sm">
                     {edu.period}
                   </div>
                 </div>
 
-                <div className="flex-1 pt-2">
-                  <h3 className="text-2xl font-bold font-heading text-[var(--text-deep)] mb-2">
+                <div className="flex-1 pt-2 relative z-10">
+                  <h3 className="text-xl font-bold font-heading text-[var(--text-deep)] mb-2">
                     {edu.degree}
                   </h3>
                   

@@ -7,9 +7,9 @@
     --font-mono: 'JetBrains Mono', monospace;
 
     /* Premium Light Lavender Developer Palette */
-    --bg-page: #CCC4E6;
-    --bg-secondary: #D4CDEC;
-    --bg-card: #F4F1FA;
+    --bg-page: #BAB0DA;
+    --bg-secondary: #C9BEE4;
+    --bg-card: #D5CCEC; /* Soft dark lavender tint */
     
     --color-white: #FFFFFF;
     
@@ -18,13 +18,13 @@
     --purple-soft: #A78BFA;
     --purple-deep: #4C249C;
     
-    --text-deep: #211A32;
-    --text-secondary: #625A72;
-    --text-muted: #6F687A;
+    --text-deep: #161122; /* Darkened for high contrast */
+    --text-secondary: #423C4D; /* Darkened for contrast */
+    --text-muted: #534D5E;
     
     --accent-glow: rgba(109, 53, 217, 0.25);
-    --glass-bg: rgba(244, 241, 250, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-bg: rgba(213, 204, 236, 0.65);
+    --glass-border: rgba(167, 139, 250, 0.5);
   }
 
   html {
@@ -94,11 +94,11 @@
 }
 
 .glass-card {
-  background: rgba(244, 241, 250, 0.85);
+  background: rgba(213, 204, 236, 0.85); /* #D5CCEC with opacity */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 4px 20px rgba(76, 36, 156, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.5); /* Slightly more visible purple border */
+  box-shadow: 0 6px 24px rgba(76, 36, 156, 0.12); /* Subtle depth */
   transition: all 0.3s ease;
 }
 

@@ -7,7 +7,7 @@ export const Experience: React.FC = () => {
   return (
     <section id="experience" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Soft Violet */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#E4DEF6]/50 to-[var(--bg-page)] opacity-70" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-[var(--purple-soft)]/15 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="max-w-[90vw] mx-auto relative z-10">
@@ -77,21 +77,26 @@ export const Experience: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="bg-white/50 backdrop-blur rounded-2xl p-5 border border-white/60 mb-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Briefcase className="w-4 h-4 text-[var(--purple-bright)]" />
-                      <span className="font-bold text-[var(--text-deep)]">Key Project: {exp.project}</span>
+                  <div className="bg-[var(--glass-bg)] backdrop-blur rounded-2xl p-5 border border-[var(--glass-border)] mb-6 hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden group">
+                    {/* Hover Background Shift */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Briefcase className="w-4 h-4 text-[var(--purple-bright)]" />
+                        <span className="font-bold text-[var(--text-deep)]">Key Project: {exp.project}</span>
+                      </div>
+                      <p className="text-[var(--text-secondary)] font-medium leading-relaxed text-sm">
+                        {exp.contribution}
+                      </p>
                     </div>
-                    <p className="text-[var(--text-secondary)] font-medium leading-relaxed text-sm">
-                      {exp.contribution}
-                    </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies?.map((tech: string) => (
                       <span 
                         key={tech} 
-                        className="px-3 py-1.5 bg-white border border-[var(--glass-border)] rounded-lg text-sm font-bold text-[var(--text-secondary)] shadow-sm hover:border-[var(--purple-soft)] transition-colors"
+                        className="px-3 py-1.5 bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] rounded-lg text-sm font-bold text-[var(--text-secondary)] shadow-sm hover:border-[var(--purple-soft)] hover:bg-[var(--purple-soft)]/20 transition-colors"
                       >
                         {tech}
                       </span>

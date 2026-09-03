@@ -12,7 +12,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
   return (
     <section id="projects" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Deeper Lavender */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#CFC5EF]/40 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute bottom-1/3 right-[5%] w-[500px] h-[500px] bg-[var(--purple-primary)]/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE1IDBMMTUgNjBNMCAxNUw2MCAxNSIgc3Ryb2tlPSJyZ2JhKDkxLCAzMywgMTgyLCAwLjA0KSIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==')] opacity-60 -z-10" />
       
@@ -64,13 +64,17 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className={`xl:col-span-5 flex flex-col ${idx % 2 !== 0 ? 'xl:order-2 xl:pl-12' : 'xl:pr-12'}`}
+                    className={`xl:col-span-5 flex flex-col p-8 xl:p-10 glass-card rounded-[2rem] border border-[var(--glass-border)] hover:border-[#A78BFA] transition-all duration-500 relative overflow-hidden group/text ${idx % 2 !== 0 ? 'xl:order-2' : ''}`}
                   >
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-xs font-mono uppercase tracking-widest bg-white border border-[#E9D5FF] text-[#5B21B6] px-3 py-1 rounded-full shadow-sm">
-                        {project.isFeaturedAi ? 'AI Powered' : 'Full Stack'}
-                      </span>
-                    </div>
+                    {/* Hover Background Shift */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover/text:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="flex items-center gap-4 mb-6">
+                        <span className="text-xs font-mono uppercase tracking-widest bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[var(--purple-primary)] px-3 py-1 rounded-full shadow-sm">
+                          {project.isFeaturedAi ? 'AI Powered' : 'Full Stack'}
+                        </span>
+                      </div>
                     
                     <h3 className="text-2xl font-bold font-heading text-[var(--text-deep)] group-hover:text-[var(--purple-primary)] transition-colors mb-2">
                       {project.name}
@@ -108,9 +112,9 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                         href={project.live} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className=" flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#E9D5FF] text-[#181522] font-medium hover:border-[#A78BFA] transition-all shadow-sm hover:-translate-y-0.5 group/link"
+                        className=" flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[var(--purple-primary)] font-bold hover:bg-[var(--purple-primary)] hover:text-white transition-all shadow-sm hover:-translate-y-0.5 group/link"
                       >
-                        <ExternalLink className="w-4 h-4 text-[#7C3AED]" />
+                        <ExternalLink className="w-4 h-4" />
                         Live Demo
                       </a>
 
@@ -118,10 +122,11 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                         href={project.github} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className=" flex items-center justify-center w-12 h-12 rounded-xl bg-white border border-[#E9D5FF] text-[#6F687A] font-bold hover:text-[#181522] hover:border-[#A78BFA] transition-all shadow-sm hover:-translate-y-0.5"
+                        className=" flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[var(--purple-primary)] font-bold hover:bg-[var(--purple-primary)] hover:text-white transition-all shadow-sm hover:-translate-y-0.5"
                       >
                         GH
                       </a>
+                    </div>
                     </div>
                   </motion.div>
 
@@ -131,10 +136,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     onClick={() => onSelectProject(project)}
-                    className={`xl:col-span-7 h-[500px] rounded-[2rem] p-8 relative overflow-hidden transition-all duration-700  ${idx % 2 !== 0 ? 'xl:order-1' : ''}`}
-                    style={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F5F1FF 100%)' }}
+                    className={`glass-card xl:col-span-7 h-[500px] rounded-[2rem] p-8 relative overflow-hidden transition-all duration-700 hover:border-[#A78BFA] group ${idx % 2 !== 0 ? 'xl:order-1' : ''}`}
                   >
-                    <div className="absolute inset-0 border border-[#E9D5FF] rounded-[2rem] pointer-events-none z-30" />
+                    {/* Hover Background Shift */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                    <div className="absolute inset-0 border border-[var(--glass-border)] rounded-[2rem] pointer-events-none z-30" />
                     <div className="absolute inset-0 bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none flex items-center justify-center backdrop-blur-[2px]">
                       <div className="bg-white/90 px-6 py-3 rounded-full text-[#5B21B6] font-bold tracking-widest uppercase text-sm shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                         View Details <ArrowUpRight className="w-4 h-4" />

@@ -30,7 +30,7 @@ export const About: React.FC = () => {
   return (
     <section id="about" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Cooler Lavender */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#D6D8F2] to-[var(--bg-page)] opacity-60" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute top-1/4 -right-[10%] w-[400px] h-[400px] bg-[#BCC2ED]/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMzMsIDI2LCA1MCwgMC4wNSkiLz48L3N2Zz4=')] opacity-50 -z-10" />
 
@@ -90,9 +90,13 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass-panel rounded-3xl p-8 md:p-10 shadow-sm border border-[var(--glass-border)]"
+              className="glass-card rounded-3xl p-8 md:p-10 shadow-sm border border-[var(--glass-border)] hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden group"
             >
-              <h3 className="text-2xl font-bold text-[var(--text-deep)] mb-6 font-heading">
+              {/* Hover Background Shift */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-[var(--text-deep)] mb-6 font-heading">
                 A brief introduction
               </h3>
               <p className="text-[var(--text-secondary)] font-medium text-lg leading-relaxed mb-6">
@@ -105,6 +109,7 @@ export const About: React.FC = () => {
                   </span>
                 ))}
               </div>
+              </div>
             </motion.div>
 
             {/* Feature Cards Grid */}
@@ -116,9 +121,13 @@ export const About: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
-                  className="glass-card p-8 rounded-3xl group border border-[var(--glass-border)]"
+                  className="glass-card p-8 rounded-3xl group border border-[var(--glass-border)] hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-all duration-300">
+                  {/* Hover Background Shift */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-all duration-300">
                     {card.icon}
                   </div>
                   <h4 className="text-xl font-bold text-[var(--text-deep)] mb-3 font-heading group-hover:text-[var(--purple-primary)] transition-colors">
@@ -127,6 +136,7 @@ export const About: React.FC = () => {
                   <p className="text-[var(--text-secondary)] font-medium leading-relaxed text-sm">
                     {card.description}
                   </p>
+                  </div>
                 </motion.div>
               ))}
             </div>

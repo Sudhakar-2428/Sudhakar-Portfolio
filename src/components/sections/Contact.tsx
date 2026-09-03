@@ -53,7 +53,7 @@ export const Contact: React.FC = () => {
     <section id="contact" className="relative py-32 z-10 overflow-hidden">
       
       {/* Animated Background Gradients */}
-      <div className="absolute inset-0 bg-[#F5F1FF] -z-20" />
+      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <motion.div 
         animate={{ 
           scale: [1, 1.1, 1],
@@ -163,8 +163,12 @@ export const Contact: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="lg:col-span-7"
           >
-            <div className="bg-white/80 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-[#E9D5FF] shadow-[0_8px_40px_rgba(91,33,182,0.06)] relative">
-              <h3 className="text-2xl font-bold text-[#181522] mb-8 font-heading">CONTACT FORM</h3>
+            <div className="glass-card backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-[var(--glass-border)] shadow-[0_8px_40px_rgba(91,33,182,0.06)] relative hover:border-[#A78BFA] transition-all duration-300 overflow-hidden group">
+              {/* Hover Background Shift */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-[var(--text-deep)] mb-8 font-heading">CONTACT FORM</h3>
               
               <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 
@@ -276,6 +280,7 @@ export const Contact: React.FC = () => {
                 </div>
 
               </form>
+              </div>
             </div>
           </motion.div>
 

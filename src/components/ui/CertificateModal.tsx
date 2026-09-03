@@ -42,7 +42,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ cert, onClos
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-lg bg-[#fcfaff] dark:bg-[#0f0821] border border-purple-500/25 rounded-2xl shadow-2xl p-6 sm:p-8 z-10"
+          className="relative w-full max-w-3xl bg-[var(--bg-card)] dark:bg-[#1b1230] border border-[rgba(91,33,182,0.2)] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         >
           <button
             onClick={onClose}

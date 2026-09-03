@@ -230,7 +230,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -top-4 -left-12 z-30"
           >
-            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 shadow-[0_8px_24px_rgba(109,53,217,0.15)] border border-[var(--purple-soft)]/30 backdrop-blur-xl bg-white/70">
+            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400/20 to-emerald-500/20 flex items-center justify-center text-emerald-600">
                 <Server className="w-5 h-5" />
               </div>
@@ -247,7 +247,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute top-1/4 -right-16 z-30"
           >
-            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 shadow-[0_8px_24px_rgba(109,53,217,0.15)] border border-[var(--purple-soft)]/30 backdrop-blur-xl bg-white/70">
+            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-blue-600">
                 <Layout className="w-5 h-5" />
               </div>
@@ -264,7 +264,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-1/4 -left-20 z-30"
           >
-            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 shadow-[0_8px_24px_rgba(109,53,217,0.15)] border border-[var(--purple-soft)]/30 backdrop-blur-xl bg-white/70">
+            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--purple-primary)]/20 to-[var(--purple-bright)]/20 flex items-center justify-center text-[var(--purple-primary)]">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -281,7 +281,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
             className="absolute -bottom-8 right-0 z-30"
           >
-            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 shadow-[0_8px_24px_rgba(109,53,217,0.15)] border border-[var(--purple-soft)]/30 backdrop-blur-xl bg-white/70">
+            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400/20 to-orange-500/20 flex items-center justify-center text-orange-600">
                 <Database className="w-5 h-5" />
               </div>
@@ -298,7 +298,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             className="absolute -top-12 right-12 z-10"
           >
-            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.05)] border border-white/50 backdrop-blur-xl bg-white/40 scale-90">
+            <div className="glass-card px-4 py-3 rounded-2xl flex items-center gap-3 border border-[var(--glass-border)] backdrop-blur-xl scale-90">
               <div className="w-8 h-8 rounded-lg bg-slate-800/10 flex items-center justify-center text-slate-700">
                 <GitBranch className="w-4 h-4" />
               </div>

@@ -17,7 +17,7 @@ export const Achievements: React.FC = () => {
   return (
     <section id="achievements" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Soft Blue/Violet */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[#D4CDEC]/50 to-[var(--bg-page)] opacity-80" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-page)] via-[var(--bg-secondary)]/50 to-[var(--bg-page)] opacity-80" />
       <div className="absolute top-[20%] right-[10%] w-[450px] h-[450px] bg-[#93C5FD]/10 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-[90vw] mx-auto relative z-10">

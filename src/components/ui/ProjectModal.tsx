@@ -45,7 +45,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', duration: 0.5, bounce: 0.2 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#1b1230] border border-[rgba(91,33,182,0.2)] rounded-2xl shadow-2xl z-10 p-6 sm:p-8"
+          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[var(--bg-card)] dark:bg-[#1b1230] border border-[rgba(91,33,182,0.2)] rounded-2xl shadow-2xl z-10 p-6 sm:p-8"
         >
           {/* Close button */}
           <button
