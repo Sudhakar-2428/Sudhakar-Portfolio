@@ -17,13 +17,22 @@ export const Contact: React.FC = () => {
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+      let response;
+      try {
+        response = await fetch(`${apiUrl}/api/contact`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       const data = await response.json();
 
@@ -39,7 +48,9 @@ export const Contact: React.FC = () => {
       setFormStatus('error');
       
       const errMsg = error?.message || '';
-      if (errMsg.includes('Failed to fetch') || errMsg.includes('NetworkError') || errMsg.includes('Unexpected token')) {
+      if (error.name === 'AbortError') {
+        setErrorMessage('The server is waking up. Please try again.');
+      } else if (errMsg.includes('Failed to fetch') || errMsg.includes('NetworkError') || errMsg.includes('Unexpected token')) {
         setErrorMessage('Unable to connect to the backend. Please try again later.');
       } else {
         setErrorMessage(errMsg || 'Unable to send the message right now. Please try again later.');
