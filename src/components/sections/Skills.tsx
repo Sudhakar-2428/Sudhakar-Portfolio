@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Layout, Server, Database, BrainCircuit, CheckCircle2, Wrench } from 'lucide-react';
 import { SKILLS_DATA } from '../../data/portfolioData';
@@ -15,6 +15,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 };
 
 export const Skills: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<number | null>(null);
+
   return (
     <section id="skills" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Soft Blue/Lavender */}
@@ -54,14 +56,25 @@ export const Skills: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: categoryIndex * 0.1 }}
-                className="glass-card p-6 sm:p-8 rounded-3xl border border-[var(--glass-border)] hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden group"
+                onTouchStart={() => setActiveCategory(categoryIndex)}
+                className={`glass-card p-6 sm:p-8 rounded-3xl border transition-all duration-300 relative overflow-hidden group ${
+                  activeCategory === categoryIndex 
+                    ? 'border-[#A78BFA]' 
+                    : 'border-[var(--glass-border)] hover:border-[#A78BFA]'
+                }`}
               >
                 {/* Hover Background Shift */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className={`absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 transition-opacity duration-300 pointer-events-none ${
+                  activeCategory === categoryIndex ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`} />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-8">
-                    <div className="p-3 bg-[var(--purple-soft)]/10 rounded-xl text-[var(--purple-primary)] group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-colors duration-300">
+                    <div className={`p-3 rounded-xl transition-colors duration-300 ${
+                      activeCategory === categoryIndex 
+                        ? 'bg-[var(--purple-primary)] text-white' 
+                        : 'bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] group-hover:bg-[var(--purple-primary)] group-hover:text-white'
+                    }`}>
                       {IconNode}
                     </div>
                     <h3 className="text-lg font-bold font-heading text-[var(--text-deep)]">{category.category}</h3>

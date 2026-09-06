@@ -11,6 +11,7 @@ interface CertificationsProps {
 export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsVisible, setCardsVisible] = useState(1);
+  const [activeCert, setActiveCert] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -139,18 +140,29 @@ export const Certifications: React.FC<CertificationsProps> = ({ onSelectCert }) 
                 className="px-3 md:px-4 flex-shrink-0"
               >
                 <div 
-                  className={`glass-card h-full p-6 md:p-8 flex flex-col justify-between rounded-[2rem] border border-[var(--glass-border)] transition-all duration-500 relative overflow-hidden group ${
-                    isVisible ? 'opacity-100 scale-100 shadow-sm hover:shadow-xl hover:border-[#A78BFA]' : 'opacity-40 scale-95 pointer-events-none'
+                  onTouchStart={() => setActiveCert(cert.id)}
+                  className={`glass-card h-full p-6 md:p-8 flex flex-col justify-between rounded-[2rem] border transition-all duration-500 relative overflow-hidden group ${
+                    isVisible ? 'opacity-100 scale-100 shadow-sm pointer-events-auto' : 'opacity-40 scale-95 pointer-events-none'
+                  } ${
+                    activeCert === cert.id 
+                      ? 'shadow-xl border-[#A78BFA]' 
+                      : 'border-[var(--glass-border)] hover:shadow-xl hover:border-[#A78BFA]'
                   }`}
                 >
                   
                   {/* Hover Background Shift */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 transition-opacity duration-300 pointer-events-none ${
+                    activeCert === cert.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                  }`} />
 
                   <div className="space-y-6 relative z-10">
                     {/* Provider Header */}
                     <div className="flex items-center justify-between">
-                      <div className="p-3 rounded-2xl bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] border border-[var(--glass-border)] group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-all duration-300">
+                      <div className={`p-3 rounded-2xl border border-[var(--glass-border)] transition-all duration-300 ${
+                        activeCert === cert.id 
+                          ? 'bg-[var(--purple-primary)] text-white' 
+                          : 'bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] group-hover:bg-[var(--purple-primary)] group-hover:text-white'
+                      }`}>
                         <Award className="w-6 h-6" />
                       </div>
                       <span className="px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[10px] md:text-xs font-mono font-bold text-[var(--purple-primary)] shadow-sm uppercase tracking-wider">

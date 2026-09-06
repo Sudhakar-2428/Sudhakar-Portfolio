@@ -102,43 +102,49 @@ ACHIEVEMENTS:
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-4xl max-h-[90vh] flex flex-col bg-[var(--bg-card)] dark:bg-[#1b1230] border border-[rgba(91,33,182,0.2)] rounded-2xl shadow-2xl p-6 sm:p-8 z-10"
+          className="relative w-full max-w-4xl max-h-[90vh] md:max-h-[85vh] flex flex-col bg-[var(--bg-card)] dark:bg-[#1b1230] border border-[rgba(91,33,182,0.2)] rounded-2xl shadow-2xl z-10 overflow-hidden"
         >
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-xl bg-white dark:bg-purple-950 border border-purple-500/20 text-slate-600 dark:text-slate-300 hover:text-purple-700 transition-all shadow-sm"
-            aria-label="Close modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Modal Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-purple-500/15 pr-10">
-            <div>
-              <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-800 dark:text-purple-300 text-xs font-mono font-semibold mb-2 inline-block">
-                Professional Candidate Dossier
-              </span>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white font-heading">
-                {PERSONAL_INFO.name}
-              </h2>
-              <p className="text-purple-700 dark:text-purple-300 text-sm font-semibold">
-                {PERSONAL_INFO.title}
-              </p>
-            </div>
-
+          {/* Header (Fixed) */}
+          <div className="flex-shrink-0 p-5 sm:p-8 pb-4 border-b border-purple-500/15 relative z-20 bg-[var(--bg-card)] dark:bg-[#1b1230]">
+            {/* Close button */}
             <button
-              onClick={handleDownload}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-semibold text-xs font-mono shadow-md transition-all shrink-0"
+              onClick={onClose}
+              className="absolute top-5 right-5 sm:top-8 sm:right-8 p-2 rounded-xl bg-white dark:bg-purple-950 border border-purple-500/20 text-slate-600 dark:text-slate-300 hover:text-purple-700 transition-all shadow-sm z-30"
+              aria-label="Close modal"
             >
-              <Download className="w-4 h-4" />
-              Download Resume
+              <X className="w-5 h-5" />
             </button>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pr-12">
+              <div>
+                <span className="px-3 py-1 rounded-full bg-purple-500/10 text-purple-800 dark:text-purple-300 text-xs font-mono font-semibold mb-2 inline-block">
+                  Professional Candidate Dossier
+                </span>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white font-heading">
+                  {PERSONAL_INFO.name}
+                </h2>
+                <p className="text-purple-700 dark:text-purple-300 text-sm font-semibold">
+                  {PERSONAL_INFO.title}
+                </p>
+              </div>
+
+              <button
+                onClick={handleDownload}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-semibold text-xs font-mono shadow-md transition-all shrink-0"
+              >
+                <Download className="w-4 h-4" />
+                Download Resume
+              </button>
+            </div>
           </div>
 
-          {/* Body */}
-          <div className="space-y-6 text-sm text-slate-700 dark:text-slate-200">
-            {/* Contact info strip */}
+          {/* Body (Scrollable) */}
+          <div 
+            className="flex-1 overflow-y-auto overscroll-contain p-5 sm:p-8 touch-pan-y"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
+            <div className="space-y-6 text-sm text-slate-700 dark:text-slate-200">
+              {/* Contact info strip */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white dark:bg-purple-950/60 border border-purple-500/20 font-mono text-xs text-slate-600 dark:text-slate-300 shadow-sm">
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-purple-600" />
@@ -223,8 +229,10 @@ ACHIEVEMENTS:
               </div>
             </div>
           </div>
+          </div>
 
-          <div className="mt-8 pt-4 border-t border-purple-500/15 flex justify-between items-center text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold">
+          {/* Footer (Fixed) */}
+          <div className="flex-shrink-0 p-5 sm:p-8 pt-4 border-t border-purple-500/15 flex justify-between items-center text-xs font-mono text-slate-500 dark:text-slate-400 font-semibold bg-[var(--bg-card)] dark:bg-[#1b1230]">
             <span>Sudhakar • Software Developer Portfolio</span>
             <button
               onClick={handleDownload}

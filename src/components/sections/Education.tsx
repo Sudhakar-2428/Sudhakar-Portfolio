@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, BookOpen } from 'lucide-react';
 import { EDUCATION_DATA } from '../../data/portfolioData';
 
 export const Education: React.FC = () => {
+  const [activeEdu, setActiveEdu] = useState<number | null>(null);
+
   return (
     <section id="education" className="relative py-24 z-10 overflow-hidden">
       {/* Background Atmosphere - Light Violet */}
@@ -61,13 +63,24 @@ export const Education: React.FC = () => {
               </div>
 
               {/* Card */}
-              <div className="flex flex-col md:flex-row gap-6 md:gap-10 p-8 glass-card rounded-3xl border border-[var(--glass-border)] w-full hover:border-[#A78BFA] transition-all duration-300 relative overflow-hidden group">
+              <div 
+                onTouchStart={() => setActiveEdu(idx)}
+                className={`flex flex-col md:flex-row gap-6 md:gap-10 p-8 glass-card rounded-3xl border w-full transition-all duration-300 relative overflow-hidden group ${
+                  activeEdu === idx ? 'border-[#A78BFA]' : 'border-[var(--glass-border)] hover:border-[#A78BFA]'
+                }`}
+              >
                 
                 {/* Hover Background Shift */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className={`absolute inset-0 bg-gradient-to-br from-white/50 to-[#F5F1FF]/50 transition-opacity duration-300 pointer-events-none ${
+                  activeEdu === idx ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`} />
 
                 <div className="flex-shrink-0 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-[var(--purple-soft)]/10 flex items-center justify-center text-[var(--purple-primary)] mb-4 group-hover:bg-[var(--purple-primary)] group-hover:text-white transition-colors duration-300">
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-colors duration-300 ${
+                    activeEdu === idx 
+                      ? 'bg-[var(--purple-primary)] text-white' 
+                      : 'bg-[var(--purple-soft)]/10 text-[var(--purple-primary)] group-hover:bg-[var(--purple-primary)] group-hover:text-white'
+                  }`}>
                     <GraduationCap className="w-8 h-8" />
                   </div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--purple-soft)]/10 border border-[var(--glass-border)] text-[var(--purple-primary)] text-sm font-bold font-mono shadow-sm">

@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowRight, ExternalLink, Activity, Egg, LayoutDashboard, BrainCircuit, FileText, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ExternalLink, CheckCircle } from 'lucide-react';
 import { PROJECTS_DATA } from '../../data/portfolioData';
 import type { ProjectItem } from '../../data/portfolioData';
+import poultryImg from '../../assets/projects/poultry.png';
+import interviewImg from '../../assets/projects/interview.png';
 
 interface ProjectsProps {
   onSelectProject: (project: ProjectItem) => void;
@@ -148,69 +150,64 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                       </div>
                     </div>
 
-                    <div className="w-full h-full relative z-10 transition-transform duration-700 group-hover:scale-[1.02]">
-                      {isSmartPoultry ? (
-                        /* SmartPoultry Visual: Farm Dashboard */
-                        <div className="w-full h-full glass-panel rounded-2xl flex flex-col p-6 shadow-xl border border-white">
-                          <div className="flex justify-between items-center mb-6">
-                            <div className="flex items-center gap-2">
-                              <LayoutDashboard className="w-5 h-5 text-[#7C3AED]" />
-                              <span className="font-bold text-[#181522]">Farm Analytics</span>
+                    <div className="w-full h-full relative z-10 transition-transform duration-700 group-hover:scale-[1.02] flex flex-col">
+                      {/* Image Area */}
+                      <div className="relative w-full flex-1 rounded-2xl overflow-hidden border border-[var(--glass-border)] shadow-lg group-hover:shadow-[0_8px_30px_rgb(91,33,182,0.15)] group-hover:border-[#A78BFA] transition-all duration-300">
+                        <img 
+                          src={isSmartPoultry ? poultryImg : interviewImg} 
+                          alt={project.name} 
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      
+                      {/* Additional Information Area */}
+                      <div className="mt-5 flex flex-col gap-3 bg-white/40 backdrop-blur-md p-5 rounded-2xl border border-[var(--glass-border)] shadow-sm">
+                        {isSmartPoultry ? (
+                          <>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-bold uppercase tracking-wider text-[var(--purple-primary)]">AI Farm Management</span>
+                              <span className="text-xs font-bold text-[var(--text-secondary)] bg-white/60 px-2 py-1 rounded-md">Spring Boot + React</span>
                             </div>
-                            <div className="flex gap-2">
-                              <div className="w-3 h-3 rounded-full bg-green-400" />
-                              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                              <div className="w-3 h-3 rounded-full bg-red-400" />
+                            <div className="h-px w-full bg-gradient-to-r from-[var(--glass-border)] via-[#E9D5FF] to-[var(--glass-border)]"></div>
+                            <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Capability:</strong> Complete lifecycle tracking & automation</span>
+                              </li>
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Highlight:</strong> Real-time farm analytics dashboard</span>
+                              </li>
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Impact:</strong> Eliminates manual records & centralizes ops</span>
+                              </li>
+                            </ul>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-bold uppercase tracking-wider text-[var(--purple-primary)]">AI Interview Agent</span>
+                              <span className="text-xs font-bold text-[var(--text-secondary)] bg-white/60 px-2 py-1 rounded-md">React + OpenAI API</span>
                             </div>
-                          </div>
-                          <div className="grid grid-cols-2 gap-4 mb-4">
-                            <div className="bg-[#F8F5FF] p-4 rounded-xl border border-[#E9D5FF]">
-                              <Egg className="w-5 h-5 text-[#5B21B6] mb-2" />
-                              <div className="text-2xl font-black text-[#181522]">1,248</div>
-                              <div className="text-xs text-[#6F687A] uppercase font-bold tracking-wider">Egg Production</div>
-                            </div>
-                            <div className="bg-[#F8F5FF] p-4 rounded-xl border border-[#E9D5FF]">
-                              <Activity className="w-5 h-5 text-emerald-500 mb-2" />
-                              <div className="text-2xl font-black text-[#181522]">98%</div>
-                              <div className="text-xs text-[#6F687A] uppercase font-bold tracking-wider">Flock Health</div>
-                            </div>
-                          </div>
-                          <div className="flex-1 bg-gradient-to-r from-[#EEE8FF] to-[#F8F5FF] rounded-xl border border-[#E9D5FF] flex items-end p-4 gap-2">
-                            {[40, 60, 45, 80, 55, 90, 75].map((h, i) => (
-                              <motion.div 
-                                key={i}
-                                initial={{ height: 0 }}
-                                whileInView={{ height: `${h}%` }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1, delay: 0.2 + (i * 0.1) }}
-                                className="flex-1 bg-[#A78BFA] rounded-t-sm hover:bg-[#7C3AED] transition-colors"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      ) : (
-                        /* Mock Interview Agent Visual: AI Pipeline */
-                        <div className="w-full h-full relative flex items-center justify-center">
-                          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M 50 150 Q 200 50 350 150 T 650 150" fill="transparent" stroke="#7C3AED" strokeWidth="2" strokeDasharray="5,5" />
-                            <path d="M 100 250 Q 300 350 500 250" fill="transparent" stroke="#5B21B6" strokeWidth="2" strokeDasharray="5,5" />
-                          </svg>
-                          <div className="grid grid-cols-3 gap-6 relative z-10 w-full px-4">
-                            <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 4, repeat: Infinity }} className="bg-white p-4 rounded-2xl shadow-lg border border-[#E9D5FF] flex flex-col items-center text-center">
-                              <FileText className="w-8 h-8 text-[#7C3AED] mb-2" />
-                              <span className="text-[10px] font-bold uppercase tracking-widest text-[#181522]">Resume Parsing</span>
-                            </motion.div>
-                            <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 1 }} className="bg-[#5B21B6] p-4 rounded-2xl shadow-xl border border-[#7C3AED] flex flex-col items-center text-center transform scale-110">
-                              <BrainCircuit className="w-8 h-8 text-white mb-2" />
-                              <span className="text-[10px] font-bold uppercase tracking-widest text-white">AI Analysis & Gen</span>
-                            </motion.div>
-                            <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 2 }} className="bg-white p-4 rounded-2xl shadow-lg border border-[#E9D5FF] flex flex-col items-center text-center">
-                              <CheckCircle className="w-8 h-8 text-emerald-500 mb-2" />
-                              <span className="text-[10px] font-bold uppercase tracking-widest text-[#181522]">Performance Report</span>
-                            </motion.div>
-                          </div>
-                        </div>
-                      )}
+                            <div className="h-px w-full bg-gradient-to-r from-[var(--glass-border)] via-[#E9D5FF] to-[var(--glass-border)]"></div>
+                            <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Capability:</strong> Real-time AI interview & evaluation</span>
+                              </li>
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Highlight:</strong> Integrated live coding & sentiment tracking</span>
+                              </li>
+                              <li className="flex items-start gap-2.5">
+                                <CheckCircle className="w-4 h-4 text-[var(--purple-primary)] mt-0.5 shrink-0" />
+                                <span><strong className="text-[var(--text-deep)]">Impact:</strong> Provides instant feedback to boost pass rates</span>
+                              </li>
+                            </ul>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
 
